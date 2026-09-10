@@ -2,22 +2,31 @@
 
 Every notebook starts with the same short cell::
 
-    import sys, subprocess, pathlib
+    import pathlib, subprocess, sys
     REPO = "https://github.com/arubrno/atrium-school-ml-lessons.git"
-    root = next((p for p in [pathlib.Path.cwd(), *pathlib.Path.cwd().parents]
+    HUB_REPO = pathlib.Path.home() / "_atrium-school-ml-lessons"
+    here = pathlib.Path.cwd()
+    root = next((p for p in [here, *here.parents, HUB_REPO]
                  if (p / "atrium_bootstrap.py").exists()), None)
     if root is None:                                   # Colab, or a bare kernel
         root = pathlib.Path("atrium-school-ml-lessons").resolve()
-        if not root.exists():
+        if not (root / "atrium_bootstrap.py").exists():
             subprocess.run(["git", "clone", "--depth", "1", REPO, str(root)], check=True)
     sys.path.insert(0, str(root))
     from atrium_bootstrap import setup
-    setup("torch", "transformers")
+    setup("torch", "transformers");
 
 That cell is deliberately self-contained: on Colab nothing of this repository
 exists yet when it runs, so it cannot import anything from here until it has
 cloned. Everything after the clone lives in this module, so a fix reaches every
 notebook at once.
+
+On the school JupyterHub every participant's server mounts the same
+``/home/jovyan``. The organisers keep one clone in ``~/_atrium-school-ml-lessons``
+and participants copy notebooks out of it into ``~/<their name>/``; ``HUB_REPO``
+is how a copied notebook finds its way back. Packages (``~/.local``), model
+weights (``~/.cache/huggingface``) and datasets (``~/_atrium-data``) are shared
+the same way, so whatever the organisers' first run fetched, everyone has.
 
 ``setup()`` does three things:
 
@@ -32,16 +41,21 @@ notebook at once.
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
 import os
 import subprocess
 import sys
 from pathlib import Path
 
-__all__ = ["setup", "ensure", "where_am_i", "REPO_ROOT"]
+__all__ = ["setup", "ensure", "where_am_i", "REPO_ROOT", "HUB_DATA"]
 
 _HERE = Path(__file__).resolve().parent
 REPO_ROOT = _HERE
+
+#: Where datasets live on the school JupyterHub. The home directory is shared by
+#: every participant's server, so one copy serves the whole room.
+HUB_DATA = Path.home() / "_atrium-data"
 
 #: pip name -> import name, only where the two differ.
 _MODULE = {
@@ -53,6 +67,14 @@ _MODULE = {
     "scikit-image": "skimage",
     "huggingface-hub": "huggingface_hub",
     "pillow-simd": "PIL",
+}
+
+#: Version limits applied when a package has to be installed. Anything already
+#: installed is left alone.
+_PINS = {
+    # transformers 5 switches PyTorch off entirely below torch 2.5, and the
+    # school JupyterHub image ships torch 2.4.1. The 4.x line needs only 2.1.
+    "transformers": "transformers>=4.40,<5",
 }
 
 #: Installed from the CPU index unless we are on Colab, which ships its own build.
@@ -106,21 +128,75 @@ def _missing(packages) -> list[str]:
     return out
 
 
+def _add_user_site() -> None:
+    """Make ``pip install --user`` packages importable without a kernel restart.
+
+    Python only puts ``~/.local`` on the path if it existed when the interpreter
+    started, and on the hub another participant's server may have installed into
+    it since.
+    """
+    import site
+    user_site = site.getusersitepackages()
+    for path in ([user_site] if isinstance(user_site, str) else list(user_site)):
+        if path not in sys.path:
+            sys.path.append(path)
+    importlib.invalidate_caches()
+
+
+@contextlib.contextmanager
+def _install_lock(quiet: bool):
+    """Take turns installing into the ``~/.local`` that every hub server shares.
+
+    Two pips writing the same site-packages at once can leave it half-installed
+    for everyone. ``lockf`` rather than ``flock`` because it also holds across
+    machines on an NFS-mounted home.
+    """
+    import fcntl
+    path = Path.home() / ".cache" / "atrium-install.lock"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as fh:
+        try:
+            fcntl.lockf(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            if not quiet:
+                print("someone else is installing packages on the shared home; waiting ...")
+            fcntl.lockf(fh, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.lockf(fh, fcntl.LOCK_UN)
+
+
 def ensure(*packages: str, quiet: bool = False) -> list[str]:
     """Install whichever of ``packages`` are not importable. Returns what it installed."""
     env = where_am_i()
     # --user is what makes an install survive a hub respawn; it is also invalid
     # inside a virtual environment, where a plain install is already persistent.
     user = env == "hub" and not _in_venv()
+    if user:
+        _add_user_site()
 
-    missing = _missing(packages)
+    if not _missing(packages):
+        if not quiet:
+            print("packages: all present")
+        return []
+
+    if env != "hub":
+        return _install(_missing(packages), env=env, user=user, quiet=quiet)
+    with _install_lock(quiet):
+        # Whoever held the lock before us may have just installed all of it.
+        _add_user_site()
+        return _install(_missing(packages), env=env, user=user, quiet=quiet)
+
+
+def _install(missing: list[str], *, env: str, user: bool, quiet: bool) -> list[str]:
     if not missing:
         if not quiet:
             print("packages: all present")
         return []
 
-    torch_pkgs = [p for p in missing if p in _TORCH_FAMILY]
-    other = [p for p in missing if p not in _TORCH_FAMILY]
+    torch_pkgs = [_PINS.get(p, p) for p in missing if p in _TORCH_FAMILY]
+    other = [_PINS.get(p, p) for p in missing if p not in _TORCH_FAMILY]
 
     if torch_pkgs:
         # Off Colab, the default PyPI wheel drags in ~2.5 GB of CUDA runtime even
@@ -135,14 +211,10 @@ def ensure(*packages: str, quiet: bool = False) -> list[str]:
         _pip(other, user=user)
 
     # A --user install lands in a directory this interpreter may not have on its
-    # path yet; make it importable without a kernel restart.
+    # path yet.
     if user:
-        import site
-        user_site = site.getusersitepackages()
-        for path in ([user_site] if isinstance(user_site, str) else list(user_site)):
-            if path not in sys.path:
-                sys.path.append(path)
-        importlib.invalidate_caches()
+        _add_user_site()
+    importlib.invalidate_caches()
 
     return missing
 
@@ -169,6 +241,20 @@ def _cache_root(env: str, drive: bool) -> Path:
     return Path.home() / ".cache"
 
 
+#: Environment variables that setup() itself chose, so a second call may change
+#: them (to switch Colab over to Drive) without trampling ones the user set.
+_OURS: dict[str, str] = {}
+
+
+def _set_env(name: str, value: str) -> bool:
+    """Set ``name`` unless the user set it themselves. Returns whether it changed."""
+    current = os.environ.get(name)
+    if current is not None and _OURS.get(name) != current:
+        return False
+    os.environ[name] = _OURS[name] = value
+    return current is not None and current != value
+
+
 def setup(*packages: str, drive: bool = False, quiet: bool = False) -> Path:
     """Prepare the current runtime and return the repository root.
 
@@ -186,8 +272,9 @@ def setup(*packages: str, drive: bool = False, quiet: bool = False) -> Path:
         sys.path.insert(0, str(root))
 
     cache = _cache_root(env, drive)
-    os.environ.setdefault("HF_HOME", str(cache / "huggingface"))
-    os.environ.setdefault("ATRIUM_CACHE", str(cache / "atrium-school"))
+    data = HUB_DATA if env == "hub" else cache / "atrium-school"
+    hf_moved = _set_env("HF_HOME", str(cache / "huggingface"))
+    _set_env("ATRIUM_CACHE", str(data))
     os.environ.setdefault("ATRIUM_ENV", env)
     (cache / "huggingface").mkdir(parents=True, exist_ok=True)
 
@@ -197,10 +284,15 @@ def setup(*packages: str, drive: bool = False, quiet: bool = False) -> Path:
         where = {"colab": "Google Colab", "hub": "JupyterHub", "local": "this machine"}[env]
         print(f"\nrunning on : {where}")
         print(f"repository : {root}")
-        print(f"caches in  : {cache}")
+        print(f"models in  : {os.environ['HF_HOME']}")
+        print(f"datasets in: {os.environ['ATRIUM_CACHE']}")
         if env == "colab" and not drive:
-            print("note       : Colab forgets this cache when the runtime is recycled.\n"
-                  "             setup(..., drive=True) keeps it in your Google Drive.")
+            print("note       : Colab forgets these when the runtime is recycled.\n"
+                  "             setup(..., drive=True) keeps them in your Google Drive.")
+    if hf_moved and "huggingface_hub" in sys.modules:
+        # huggingface_hub reads HF_HOME once, when it is first imported.
+        print("\nThe model cache moved, but a model was already loaded from the old one.\n"
+              "Restart the kernel (Colab: Runtime → Restart session) and run again.")
     return root
 
 

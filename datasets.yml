@@ -6,8 +6,12 @@
 # source.kind:
 #   repo   — a folder committed in this repository (small, public data only)
 #   url    — a .zip / .tar.gz fetched once and cached in the persistent home
-#   hub    — a directory already mounted on the JupyterHub
+#   hub    — a directory already on the JupyterHub, placed there by the organisers
 #   zenodo — a DOI, resolved to its files (use this once a dataset is archived)
+#
+# On the school JupyterHub every server mounts the same /home/jovyan, and all
+# data lives in ~/_atrium-data/<name>: `url` and `zenodo` datasets are downloaded
+# there (by the organisers, before the session), `hub` datasets are copied there.
 #
 # access:
 #   public     — anyone can fetch it
@@ -52,10 +56,10 @@ satellite:
   access: restricted
   source:
     kind: hub
-    path: /home/jovyan/shared/satellite
+    path: ~/_atrium-data/satellite
   note: >-
     Site locations make this dataset non-redistributable, so it is not in the
-    repository. It is mounted on the school JupyterHub for the week — ask an
+    repository. It is on the school JupyterHub for the week — ask an
     instructor if the folder is missing.
 
 rock-art:
@@ -66,7 +70,7 @@ rock-art:
   access: restricted
   source:
     kind: hub
-    path: /home/jovyan/shared/rock-art
+    path: ~/_atrium-data/rock-art
   note: >-
     Provided on the school JupyterHub. Task and licensing still to be confirmed —
     see 4-thursday-rock-art/README.md.

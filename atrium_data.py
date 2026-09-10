@@ -9,10 +9,12 @@ Where a dataset lives is described once, in ``datasets.yml``. Moving a dataset �
 into the repository, onto the hub, up to Zenodo — edits that file and no notebook.
 
 Downloads are cached under ``~/.cache/atrium-school``, or wherever ``$ATRIUM_CACHE``
-points — ``atrium_bootstrap.setup()`` sets it per platform. On the CERIT-SC
-JupyterHub and on your own machine that is a persistent home directory, so a
-dataset is fetched once and survives every later respawn of the notebook server.
-On Colab it lives in ``/content`` unless you asked for Google Drive.
+points — ``atrium_bootstrap.setup()`` sets it per platform. On the school
+JupyterHub it is ``~/_atrium-data``: every participant's server mounts the same
+home, so the organisers fetch each dataset once and the whole room reads that
+copy. Restricted datasets are placed in the same folder by hand. On your own
+machine it is a persistent home directory too; on Colab it lives in
+``/content`` unless you asked for Google Drive.
 
 A dataset may list several sources under ``sources:`` instead of one ``source:``.
 They are tried in order, so a folder mounted on the hub can name a public mirror
@@ -45,7 +47,14 @@ def cache_dir() -> Path:
     Read on every call, not once at import: ``atrium_bootstrap.setup()`` chooses
     a cache per platform, and a notebook may import this module either side of it.
     """
-    return Path(os.environ.get("ATRIUM_CACHE", Path.home() / ".cache" / "atrium-school"))
+    if os.environ.get("ATRIUM_CACHE"):
+        return Path(os.environ["ATRIUM_CACHE"])
+    # Without setup() — an organiser fetching data from a hub terminal, say — the
+    # hub still has to land in the one folder everybody reads.
+    from atrium_bootstrap import HUB_DATA, where_am_i
+    if where_am_i() == "hub":
+        return HUB_DATA
+    return Path.home() / ".cache" / "atrium-school"
 
 
 class DatasetUnavailable(RuntimeError):
@@ -179,7 +188,7 @@ def _from_source(name: str, entry: dict, source: dict, *, refresh: bool) -> Path
 
     # --- already mounted on the hub ------------------------------------
     if kind == "hub":
-        path = Path(source["path"])
+        path = Path(source["path"]).expanduser()
         if not path.is_dir():
             raise _unavailable(
                 name, entry, f"Expected the mounted folder {path}, which is not there.",
@@ -213,7 +222,10 @@ def _from_source(name: str, entry: dict, source: dict, *, refresh: bool) -> Path
     else:
         urls = [source["url"]]
 
-    with tempfile.TemporaryDirectory() as tmp:
+    # Stage next to the target, not in /tmp, so the final step is a rename: on the
+    # shared hub home another participant must never see a half-copied folder.
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=target.parent, prefix=f".{name}-") as tmp:
         staged = Path(tmp) / "staged"
         staged.mkdir()
         for url in urls:
@@ -235,8 +247,14 @@ def _from_source(name: str, entry: dict, source: dict, *, refresh: bool) -> Path
             _extract(archive, staged)
 
         source_dir = _collapse_single_dir(staged)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(source_dir), str(target))
+        try:
+            source_dir.rename(target)
+        except OSError:
+            # Someone else finished the same download first; theirs is as good.
+            if not (target.is_dir() and any(target.iterdir())):
+                raise
+            print(f"{name}: {target}  (fetched meanwhile by someone else)")
+            return target
 
     print(f"{name}: {target}  (downloaded, cached for next time)")
     return target

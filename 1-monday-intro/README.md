@@ -28,4 +28,6 @@ from atrium_data import get_dataset
 path = get_dataset("demo")
 ```
 
-Add your own photographs to `demo-images/` and they appear in the notebook.
+To try your own photographs, use section 8 of the notebook — keep them in your
+own folder rather than adding them to `demo-images/`, which on the school
+JupyterHub everybody shares.

@@ -27,14 +27,17 @@ the model and dataset caches somewhere sensible. **Nothing needs editing to move
 between platforms.**
 
 **Google Colab** — nothing to install. Click the *Open in Colab* badge in a
-notebook's first cell and run it. Colab wipes its disk when the runtime is
-recycled; to keep the model weights between sessions, change the last line of
-the setup cell to `setup("torch", "transformers", drive=True)` and approve the
-Google Drive prompt.
+notebook's first cell and run it. *File → Save a copy in Drive* before you edit:
+a notebook opened from GitHub does not keep your changes. Colab wipes its disk
+when the runtime is recycled; to keep the model weights between sessions, change
+the last line of the setup cell to `setup("torch", "transformers", drive=True)`
+before running anything, and approve the Google Drive prompt.
 
-**School JupyterHub** — you get a URL on the first morning that drops you
-straight into JupyterLab, with the server running and this repository already
-in place. Open the day's folder and double-click the notebook.
+**School JupyterHub** — every participant's server mounts the same
+`/home/jovyan`. This repository is in `~/_atrium-school-ml-lessons/`, the data
+in `~/_atrium-data/`, and packages and model weights are already installed.
+Copy the notebook you need into your own folder, `~/<your name>/`, and open
+the copy; its setup cell finds the shared repository and installs nothing.
 
 **Your own machine** —
 
@@ -64,7 +67,7 @@ Where each dataset actually lives — in this repository, mounted on the hub, or
 downloaded once and cached — is recorded in [`datasets.yml`](datasets.yml), and
 nowhere else. Moving a dataset edits that file and no notebook.
 
-The satellite and rock-art datasets are restricted and are mounted on the school
+The satellite and rock-art datasets are restricted and are on the school
 JupyterHub only; those two case studies do not run in Colab.
 
 ## What is where
@@ -81,7 +84,33 @@ requirements.txt      the notebook environment
 
 Copy it before you edit it (`cp clip_zero_shot.ipynb my-clip.ipynb`). We push
 updates during the week, and `git pull` onto a notebook you have changed produces
-a merge conflict in raw JSON that nobody enjoys resolving.
+a merge conflict in raw JSON that nobody enjoys resolving. On the hub, copy it
+into your own folder instead: the shared repository is updated in place.
+
+## Preparing the school JupyterHub (organisers)
+
+Every participant's server mounts the same `/home/jovyan`, so one instructor's
+run prepares it for everyone.
+
+```bash
+git clone --depth 1 https://github.com/arubrno/atrium-school-ml-lessons.git \
+    ~/_atrium-school-ml-lessons
+```
+
+- **Before each day**, `git -C ~/_atrium-school-ml-lessons pull`, then run that
+  day's notebooks top to bottom from inside the repository. Their setup cells
+  install what is missing into `~/.local`, the models land in
+  `~/.cache/huggingface`, and `get_dataset()` downloads into `~/_atrium-data/`
+  — all shared. A participant who gets there first is not a disaster: installs
+  take turns behind a lock, and a download is only ever seen once complete.
+- **Restricted datasets** go in by hand, at the path `datasets.yml` gives:
+  `~/_atrium-data/satellite/`, `~/_atrium-data/rock-art/`.
+- **Do not** `pip install -r requirements.txt` on the hub. It includes
+  `jupyterlab`, and a copy in the shared `~/.local` would shadow the server's own.
+- The hub image ships torch 2.4.1, which is why `transformers` is held below 5.
+
+If the shared repository gets into a mess, delete it and clone again; participants'
+work is in their own folders and is not affected.
 
 ## Licence
 

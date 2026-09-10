@@ -12,11 +12,13 @@
 # Verified on Fedora 44, Python 3.14.7, CPU only.
 
 torch>=2.4
-transformers>=4.40
+transformers>=4.40,<5   # 5.x disables PyTorch below 2.5; the hub image has 2.4.1
 pillow
 matplotlib
 requests
 pyyaml          # reads datasets.yml
 
-# Only if you want to run the notebook locally rather than on the hub:
+# Only if you want to run the notebook locally rather than on the hub.
+# Never install this file on the hub: a jupyterlab in the shared ~/.local
+# would shadow the server's own, for every participant.
 jupyterlab
