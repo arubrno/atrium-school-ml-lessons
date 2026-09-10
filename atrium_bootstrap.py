@@ -110,7 +110,9 @@ def _in_venv() -> bool:
 def _pip(packages: list[str], *, user: bool, extra_args: list[str] | None = None) -> None:
     cmd = [sys.executable, "-m", "pip", "install", "-q"]
     if user:
-        cmd.append("--user")
+        # ~/.local/bin is not on the hub's PATH. Notebooks only import the
+        # packages, so the command-line scripts some of them ship don't matter.
+        cmd += ["--user", "--no-warn-script-location"]
     cmd += (extra_args or []) + packages
     subprocess.run(cmd, check=True)
 
