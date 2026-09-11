@@ -18,10 +18,10 @@
 #   restricted — not redistributable; `note` tells the participant what to do
 
 demo:
-  title: Demo images for the CLIP zero-shot session
+  title: AMČR find photographs for the CLIP zero-shot session
   day: Monday
   instructor: Petr Pajdla
-  licence: CC BY-SA 4.0
+  licence: CC BY-NC 4.0   # per-image IDs in demo-images/CREDITS.md
   access: public
   source:
     kind: repo

@@ -20,7 +20,7 @@ are on the school website.
 | | |
 |---|---|
 | Access | `public` |
-| Licence | CC BY-SA 4.0 |
+| Licence | CC BY-NC 4.0 — AMČR find photographs, see [`demo-images/CREDITS.md`](demo-images/CREDITS.md) |
 | Source | `repo` — [`demo-images/`](demo-images/), see [`../datasets.yml`](../datasets.yml) |
 
 ```python
