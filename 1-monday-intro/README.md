@@ -14,6 +14,9 @@ are on the school website.
   CLIP. Classifying artefact photographs with no training and no annotation, and
   three ways it misleads you: the probabilities are over *your* label list,
   rewording a label changes the answer, and there is no "none of the above".
+- [`clip_zero_shot_v2.ipynb`](clip_zero_shot_v2.ipynb) — the same notebook with
+  the code spelled out step by step and commented line by line, plus an optional
+  look inside the model. For beginners who want to follow every line.
 
 ## Data
 
