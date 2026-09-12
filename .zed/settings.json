@@ -1,0 +1,81 @@
+// Project settings for Zed. These apply only to this project and override your
+// user settings (~/.config/zed/settings.json) while it is open.
+//
+// Keep editor and project-scoped keys here. Agent behaviour that belongs to the
+// project lives in AGENTS.md and .agents/skills/ instead; model choice, agent
+// profiles and tool permissions are read from your user settings — see
+// .zed/ZED-AGENTS.md.
+{
+  // Keep caches, virtualenvs, downloaded data and built sites out of the file
+  // tree, out of project search, and out of what the agent can wander into.
+  // "..." keeps everything already excluded by your user settings.
+  "file_scan_exclusions": [
+    "**/.ipynb_checkpoints",
+    "**/__pycache__",
+    "**/.venv",
+    "**/.pytest_cache",
+    "**/.quarto",
+    "**/_freeze",
+    "**/_site",
+    "**/*.egg-info",
+    "..."
+  ],
+
+  // Never send these to a model, and never let the agent open them. This list
+  // replaces the default one, so Zed's defaults are repeated here.
+  "private_files": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/secrets.yml",
+    "**/.jupyter/**",
+    "**/kaggle.json"
+  ],
+
+  "languages": {
+    "Python": {
+      "tab_size": 4,
+      "preferred_line_length": 88,
+      // No formatter is pinned for this repository: teaching code is laid out
+      // by hand so it reads well on a projector, and reformatting a notebook
+      // on save produces diffs nobody asked for.
+      "format_on_save": "off"
+    },
+    "JSON": {
+      // .ipynb files are JSON. Formatting one rewrites the whole notebook.
+      "format_on_save": "off"
+    },
+    "YAML": {
+      "tab_size": 2
+    },
+    "Markdown": {
+      "soft_wrap": "editor_width",
+      "preferred_line_length": 80,
+      "format_on_save": "off"
+    }
+  },
+
+  // MCP servers can be declared per project. Anything listed here starts when
+  // you trust this worktree, so keep it to servers the whole team needs and
+  // never put a secret in this file — it is committed.
+  //
+  // "context_servers": {
+  //   "fetch": {
+  //     "command": "uvx",
+  //     "args": ["mcp-server-fetch"],
+  //     "env": {}
+  //   }
+  // },
+
+  "terminal": {
+    // The notebooks expect the project virtualenv.
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv"],
+        "activate_script": "default"
+      }
+    }
+  }
+}
