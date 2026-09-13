@@ -1,0 +1,15 @@
+// Settings for this lesson folder. They apply when you open 1-monday-agents
+// directly — which is what the session asks you to do.
+{
+  // The repository's virtualenv lives one level up, at the repository root.
+  // Look there as well as here, so a terminal opened inside this folder finds
+  // the same Python the notebooks use.
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv", "../.venv", "../venv"],
+        "activate_script": "default"
+      }
+    }
+  }
+}
