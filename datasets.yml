@@ -27,6 +27,16 @@ demo:
     kind: repo
     path: 1-monday-intro/demo-images
 
+venus:
+  title: Venus of Dolní Věstonice, one photograph for the Python block
+  day: Monday
+  instructor: Filip Hájek
+  licence: TBC   # the instructor's own photograph, see 1-monday-python/data/CREDITS.md
+  access: public
+  source:
+    kind: repo
+    path: 1-monday-python/data
+
 artefacts:
   title: Artefact photographs
   day: Tuesday

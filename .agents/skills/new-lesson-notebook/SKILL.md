@@ -13,7 +13,7 @@ repository.
 
 Ask, or work out from the request:
 
-1. **Which day's folder?** One of `1-monday-intro/`, `2-tuesday-artefacts/`,
+1. **Which day's folder?** One of `1-monday-intro/`, `1-monday-python/`, `2-tuesday-artefacts/`,
    `3-wednesday-use-wear/`, `4-thursday-satellite/`, `4-thursday-rock-art/`,
    `5-friday-coins/`.
 2. **File name** — lower case, underscores, descriptive of the method, not of

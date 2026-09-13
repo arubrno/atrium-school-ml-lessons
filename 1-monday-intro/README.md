@@ -1,4 +1,4 @@
-# Monday — Kick-off & Python for CV
+# Monday — Kick-off & intro to CV
 
 **Monday** · instructor: Petr Pajdla
 

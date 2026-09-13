@@ -10,8 +10,9 @@ website: <https://arup-cas.github.io/atrium-school-ml/>.
 
 | | | |
 |---|---|---|
-| [`1-monday-intro/`](1-monday-intro/) | Kick-off & Python for CV | zero-shot classification with CLIP |
+| [`1-monday-intro/`](1-monday-intro/) | Kick-off & intro to CV | zero-shot classification with CLIP |
 | [`1-monday-agents/`](1-monday-agents/) | Coding with agents | the loop, instructions, skills, specs |
+| [`1-monday-python/`](1-monday-python/) | Python fundamentals for CV | Python, NumPy, Matplotlib, OpenCV |
 | [`2-tuesday-artefacts/`](2-tuesday-artefacts/) | Artefact photographs | datasets, licensing, annotation |
 | [`3-wednesday-use-wear/`](3-wednesday-use-wear/) | Microscopic use-wear | pre-processing, augmentation, OpenCV |
 | [`4-thursday-satellite/`](4-thursday-satellite/) | Satellite imagery | object detection on remote-sensing data |
