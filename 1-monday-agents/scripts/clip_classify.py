@@ -35,7 +35,15 @@ def main():
         from PIL import Image
         from transformers import CLIPModel, CLIPProcessor
     except ImportError as exc:
-        sys.exit(f"missing package: {exc.name}. See ../requirements.txt")
+        sys.exit(
+            f"missing package: {exc.name}\n"
+            "\nThis script needs the project environment. From the repository root:\n"
+            "    python -m venv .venv\n"
+            "    .venv/bin/pip install -r requirements.txt\n"
+            "\nthen run it with that interpreter:\n"
+            "    ../.venv/bin/python scripts/clip_classify.py --image ... --labels ...\n"
+            "\nplot_finds.py needs none of this and runs with any Python."
+        )
 
     try:
         image = Image.open(args.image).convert("RGB")

@@ -53,20 +53,32 @@ Nobody is told where the faults are. Noticing them is part of the point.
 
 | | | |
 | --- | --- | --- |
-| **A** | 6 min | Run a task and **count the turns of the loop** |
+| **A** | 6 min | Ask what is in the folder, and **count the turns of the loop** |
 | **B** | 4 min | **Refuse** an edit, and read what it does next |
 | **C** | 6 min | Finish **AGENTS.md**, then open a fresh conversation and test it |
 | **D** | 4 min | Use a skill, read the one that did it, **write your own** |
 
 ## Running the scripts
 
-The session's environment is the repository's — see
-[`../README.md`](../README.md). Everything here runs on CPU.
+**`scripts/plot_finds.py` needs nothing.** It uses matplotlib if you have it and
+writes an SVG if you do not, so it runs with whatever Python is on the machine.
+Nothing in the four exercises depends on a working environment.
 
 ```bash
 python scripts/plot_finds.py
-python scripts/clip_classify.py --image <photo> --labels "a,b,c"
 ```
+
+`scripts/clip_classify.py` is the exception — it needs torch and transformers,
+which live in the repository's environment one level up:
+
+```bash
+python -m venv .venv                      # from the repository root
+.venv/bin/pip install -r requirements.txt
+../.venv/bin/python scripts/clip_classify.py --image <photo> --labels "a,b,c"
+```
+
+A terminal opened inside this folder finds that environment automatically —
+`.zed/settings.json` here tells Zed to look one level up as well.
 
 `clip_classify.py` uses the **same model and the same pinned weights** as
 [`../1-monday-intro/clip_zero_shot.ipynb`](../1-monday-intro/clip_zero_shot.ipynb),

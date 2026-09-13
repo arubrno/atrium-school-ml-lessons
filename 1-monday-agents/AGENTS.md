@@ -32,6 +32,10 @@ this one.
   year that is clearly a typo, a site name without diacritics, one coordinate
   with the wrong sign. **Say what you found. Do not quietly repair them.**
 - `scripts/` is throwaway. `data/` and `docs/` are not.
+- `scripts/plot_finds.py` deliberately needs **no packages at all** — matplotlib
+  if it is there, a hand-written SVG if it is not. Keep it that way. Anything
+  needing torch or transformers belongs in `clip_classify.py`, which lives off
+  the repository environment one level up.
 - `artifacts/` is where generated pages go.
 
 ## Before you do these things, read the skill first
