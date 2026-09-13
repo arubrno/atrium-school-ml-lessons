@@ -17,6 +17,7 @@ pillow
 matplotlib
 requests
 pyyaml          # reads datasets.yml
+opencv-python-headless   # Monday Python block; headless needs no libGL, which containers often lack
 
 # Only if you want to run the notebook locally rather than on the hub.
 # Never install this file on the hub: a jupyterlab in the shared ~/.local
