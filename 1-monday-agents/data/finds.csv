@@ -1,0 +1,143 @@
+find_id,site,datum,material,type,x_jtsk,y_jtsk,weight_g,depth_cm,condition,notes
+F-0001,Znojmo-Hradiště,2023,glass,bracelet fragment,-669016.7,-1190303.3,85.4,30,worn,no context recorded
+F-0002,Pohansko,2021,bronze,ring,-571658.6,-1195945.2,63.2,15,fragmentary,redeposited
+F-0003,Dolní Věstonice,2017,ceramic,spindle whorl,-600602.4,-1188611.5,74.9,25,corroded,
+F-0004,Němčice nad Hanou,2017,silver,pendant,-559957.9,-1128628.9,34.8,45,corroded,no context recorded
+F-0005,Staré Hradisko,2022,bronze,fitting,-549517.3,-1119871.7,36.7,45,good,
+F-0006,Bořitov,2018,ceramic,loom weight,-598055.5,-1152559.5,8.6,30,corroded,redeposited
+F-0007,Blučina,2024,bone,worked fragment,-594997.4,-1172430.8,107.6,20,good,associated with hearth
+F-0008,Mikulčice,2021,silver,pendant,-546748.2,-1195218.0,,35,fragmentary,metal detector find
+F-0009,Dolní Věstonice,2020,stone,flake,-600875.7,-1188340.4,29.6,35,good,no context recorded
+F-0010,Blučina,2025,bronze,brooch,-595000.4,-1172101.9,19.5,40,good,no context recorded
+F-0011,Dolní Věstonice,2023,bone,awl,-600675.8,-1188616.9,6.7,15,worn,
+F-0012,Pohansko,2023,stone,whetstone,-571535.3,-1195602.6,85.5,25,good,no context recorded
+F-0013,Bořitov,2019,stone,flake,-597927.1,-1152501.0,8.6,20,worn,
+F-0014,Pohansko,2023,ceramic,sherd,-571228.4,-1195693.8,55.5,45,good,no context recorded
+F-0015,Mikulčice,2023,ceramic,spindle whorl,-546607.2,-1195019.0,15.4,20,good,redeposited
+F-0016,Němčice nad Hanou,2022,iron,knife,-560173.2,-1129103.4,8.8,45,corroded,
+F-0017,Blučina,2021,iron,spearhead,-594917.1,-1172516.9,10.4,45,corroded,
+F-0018,Znojmo-Hradiště,2023,stone,whetstone,-668841.8,-1190265.5,29.6,25,worn,associated with hearth
+F-0019,Staré Hradisko,2023,iron,knife,-549987.2,-1119557.9,78.1,70,fragmentary,metal detector find
+F-0020,Pohansko,2023,ceramic,sherd,-571613.6,-1196053.0,143.7,45,good,sieved
+F-0021,Znojmo-Hradiště,2019,silver,coin,-668844.3,-1189965.6,14.5,35,corroded,sieved
+F-0022,Blučina,2019,silver,coin,-595185.4,-1172178.3,21.6,25,good,found in fill
+F-0023,Znojmo-Hradiště,2021,bronze,fitting,-669141.5,-1189849.0,43.7,40,corroded,metal detector find
+F-0024,Mikulčice,2024,glass,bracelet fragment,,,60.0,55,fragmentary,sieved
+F-0025,Němčice nad Hanou,2021,iron,buckle,-560352.0,-1128662.5,35.9,25,corroded,found in fill
+F-0026,Pohansko,2021,iron,knife,-571553.3,-1196030.0,99.3,35,corroded,found in fill
+F-0027,Němčice nad Hanou,2017,stone,flake,-560274.1,-1128748.9,177.2,45,worn,no context recorded
+F-0028,Staré Hradisko,2017,stone,quern fragment,-549762.1,-1119844.7,8.9,40,worn,found in fill
+F-0029,Mikulčice,2023,glass,bracelet fragment,-546770.1,-1194885.6,17.9,70,good,redeposited
+F-0030,Bořitov,2017,bone,worked fragment,-598248.6,-1152558.2,13.9,70,fragmentary,
+F-0031,Pohansko,2019,glass,bead,-571317.4,-1196022.8,43.8,30,corroded,associated with hearth
+F-0032,Bořitov,2021,bone,comb,-598104.9,-1152459.3,121.7,30,fragmentary,found in fill
+F-0033,Staré Hradisko,2021,silver,pendant,-550402.2,-1119577.2,43.8,40,fragmentary,sieved
+F-0034,Dolní Věstonice,2023,bone,awl,-601033.7,-1188520.7,21.8,,good,redeposited
+F-0035,Dolní Věstonice,2017,glass,bead,-600799.1,-1188546.2,155.1,,worn,found in fill
+F-0036,Staré Hradisko,2018,ceramic,loom weight,-549659.1,-1119880.0,54.1,30,good,
+F-0037,Znojmo-Hradiště,2022,ceramic,spindle whorl,-668748.8,-1190014.1,8.7,35,good,metal detector find
+F-0038,Znojmo-Hradiště,2018,glass,bead,-669145.1,-1189915.0,20.5,25,corroded,
+F-0039,Staré Hradisko,2023,iron,buckle,-549886.6,-1119536.9,170.0,55,worn,
+F-0040,Blučina,2019,ceramic,sherd,-594976.2,-1172076.1,67.2,25,corroded,metal detector find
+F-0041,Bořitov,2019,glass,bead,-598056.6,-1152474.2,22.3,40,worn,associated with hearth
+F-0042,Blučina,2105,glass,bracelet fragment,-595013.9,-1172413.1,39.1,70,worn,
+F-0043,Staré Hradisko,2023,silver,coin,-549970.0,-1119765.3,47.8,70,worn,redeposited
+F-0044,Bořitov,2023,silver,pendant,-598430.3,-1152221.6,9.2,55,worn,
+F-0045,Bořitov,2025,bronze,fitting,-597885.1,-1152656.0,30.0,,good,no context recorded
+F-0046,Pohansko,2021,silver,coin,-571395.0,-1195979.4,74.1,15,fragmentary,no context recorded
+F-0047,Blučina,2024,stone,whetstone,-595160.9,-1172393.4,1.4,70,good,
+F-0048,Němčice nad Hanou,2022,ceramic,loom weight,-560225.8,-1128720.3,27.1,30,good,redeposited
+F-0049,Bořitov,2020,glass,bead,-598133.8,-1152157.9,98.0,55,worn,
+F-0050,Dolní Věstonice,2020,bronze,ring,-600754.8,-1188353.6,94.1,40,worn,
+F-0051,Bořitov,2021,glass,bracelet fragment,-598360.6,-1152366.1,17.4,30,fragmentary,sieved
+F-0052,Dolní Věstonice,2022,glass,bead,-600942.7,-1188112.3,70.8,40,fragmentary,associated with hearth
+F-0053,Němčice nad Hanou,2021,bone,comb,-560345.7,-1128842.8,104.8,15,good,found in fill
+F-0054,Dolní Věstonice,2020,silver,pendant,-600711.3,-1188387.7,4.5,15,fragmentary,found in fill
+F-0055,Němčice nad Hanou,2024,bronze,fitting,-560393.0,-1128952.1,11.4,55,fragmentary,
+F-0056,Dolní Věstonice,2019,bronze,brooch,-600634.7,-1188286.3,111.9,30,worn,redeposited
+F-0057,Staré Hradisko,2018,glass,bead,-549796.8,-1119447.0,4.7,70,corroded,found in fill
+F-0058,Staré Hradisko,2020,ceramic,spindle whorl,-549676.5,-1119759.0,44.9,25,corroded,
+F-0059,Staré Hradisko,2020,Bronze,wire,-549995.0,-1119564.7,62.8,45,worn,redeposited
+F-0060,Němčice nad Hanou,2018,bronze,ring,-560460.9,-1129117.8,45.2,45,worn,redeposited
+F-0061,Pohansko,2025,bronze,ring,-571698.1,-1195930.5,12.3,20,fragmentary,
+F-0062,Němčice nad Hanou,2021,stone,whetstone,-560684.8,-1128809.0,37.6,15,corroded,no context recorded
+F-0063,Němčice nad Hanou,2024,glass,bracelet fragment,-560314.5,-1128981.5,14.3,20,fragmentary,associated with hearth
+F-0064,Pohansko,2019,glass,bead,-571280.3,-1195899.7,118.7,15,worn,
+F-0065,Němčice nad Hanou,2023,stone,whetstone,-560292.7,-1128957.9,45.8,40,good,
+F-0066,Mikulčice,2019,glass,bead,-546587.5,-1195274.9,14.4,45,fragmentary,found in fill
+F-0067,Bořitov,2020,glass,bead,-598067.1,-1152157.8,50.8,45,fragmentary,associated with hearth
+F-0068,Pohansko,2024,glass,bracelet fragment,-571333.0,-1195833.0,115.5,15,worn,associated with hearth
+F-0069,Bořitov,2017,glass,bead,-598246.1,-1152586.3,10.7,45,good,sieved
+F-0070,Znojmo-Hradiště,2021,glass,bracelet fragment,-669040.2,-1189995.7,75.0,40,corroded,no context recorded
+F-0071,Blučina,2021,iron,spearhead,-595153.9,-1171944.7,98.2,20,good,no context recorded
+F-0072,Pohansko,2023,silver,wire,-571524.5,-1196025.9,88.8,40,fragmentary,associated with hearth
+F-0073,Blučina,2023,ceramic,loom weight,-594898.1,-1172296.0,24.9,70,corroded,
+F-0074,Mikulčice,2017,ceramic,spindle whorl,-546886.6,-1195167.8,27.9,55,worn,metal detector find
+F-0075,Staré Hradisko,2023,iron,nail,-549777.9,-1119721.2,66.3,30,good,associated with hearth
+F-0076,Dolní Věstonice,2024,iron,nail,-600617.6,-1188298.5,73.3,20,good,redeposited
+F-0077,Pohansko,2018,silver,pendant,-571603.1,-1196020.3,3.1,40,good,associated with hearth
+F-0078,Boritov,2019,silver,wire,-595235.4,-1172576.9,52.6,45,fragmentary,found in fill
+F-0079,Znojmo-Hradiště,2023,bone,worked fragment,-668847.1,-1190373.2,14.1,35,good,found in fill
+F-0080,Mikulčice,2017,stone,whetstone,-546585.2,-1195254.8,7.2,30,fragmentary,found in fill
+F-0081,Němčice nad Hanou,2019,bronze,brooch,-560527.3,-1128738.4,64.3,15,worn,
+F-0082,Němčice nad Hanou,2018,stone,whetstone,-560017.0,-1129017.4,146.5,,fragmentary,associated with hearth
+F-0083,Staré Hradisko,2019,glass,bead,-550071.6,-1119685.6,108.3,,worn,found in fill
+F-0084,Němčice nad Hanou,2017,bronze,brooch,-560062.9,-1129066.0,72.9,20,good,
+F-0085,Dolní Věstonice,2023,silver,coin,-600843.2,-1188444.0,33.9,20,fragmentary,sieved
+F-0086,Znojmo-Hradiště,2019,silver,pendant,-669046.3,-1190101.8,77.7,25,good,
+F-0087,Blučina,2019,silver,pendant,-594993.0,-1172175.8,127.7,20,corroded,no context recorded
+F-0088,Pohansko,2025,iron,nail,-571438.5,-1196072.6,18.5,35,worn,
+F-0089,Pohansko,2020,silver,coin,-571415.7,-1195817.3,39.2,35,corroded,found in fill
+F-0090,Staré Hradisko,2021,glass,bracelet fragment,-550046.8,-1119742.2,119.7,15,corroded,no context recorded
+F-0091,Bořitov,2017,silver,wire,-598306.3,-1152511.0,29.4,15,worn,
+F-0092,Němčice nad Hanou,2021,ceramic,sherd,-560157.8,-1128850.1,57.3,25,corroded,
+F-0093,Staré Hradisko,2025,iron,knife,-549712.4,-1119690.8,26.4,15,good,no context recorded
+F-0094,Bořitov,2019,stone,flake,-598185.3,-1152395.1,64.2,20,fragmentary,sieved
+F-0095,Mikulčice,2025,glass,bracelet fragment,-546814.0,-1194939.4,85.3,25,worn,redeposited
+F-0096,Blučina,2019,silver,coin,-595160.7,-1172411.2,13.7,-20,fragmentary,
+F-0097,Mikulčice,2021,bronze,coin,-546927.7,-1195016.5,46.7,70,corroded,no context recorded
+F-0098,Pohansko,2021,bone,worked fragment,-571691.5,-1195724.2,21.1,35,worn,associated with hearth
+F-0099,Mikulčice,2019,ceramic,spindle whorl,-546522.3,-1195249.8,2.2,,worn,
+F-0100,Bořitov,2021,ceramic,spindle whorl,-598083.1,-1152282.3,5.4,45,fragmentary,sieved
+F-0101,Dolní Věstonice,2021,stone,whetstone,-600663.7,-1188765.6,102.6,30,fragmentary,associated with hearth
+F-0102,Pohansko,2017,glass,bracelet fragment,-571055.9,-1195455.5,22.9,30,good,redeposited
+F-0103,Pohansko,2019,bronze,ring,-571245.2,-1195865.2,114.0,25,corroded,metal detector find
+F-0104,Dolní Věstonice,2023,glass,bracelet fragment,-600655.4,-1188608.8,25.2,40,corroded,
+F-0105,Pohansko,2019,bronze,brooch,-571377.7,-1195639.3,67.2,45,worn,
+F-0106,Staré Hradisko,2018,glass,bracelet fragment,-549988.5,-1119762.0,112.7,70,good,
+F-0107,Němčice nad Hanou,2021,bone,comb,-560272.1,-1128981.5,125.3,55,fragmentary,no context recorded
+F-0108,Blučina,2022,ceramic,sherd,-594991.0,-1172449.9,37.7,,fragmentary,no context recorded
+F-0109,Pohansko,2017,bone,worked fragment,-571344.9,-1195939.2,2.3,45,worn,
+F-0110,Němčice nad Hanou,2018,silver,wire,-560503.2,-1128818.8,20.6,,corroded,sieved
+F-0111,Staré Hradisko,2017,ceramic,sherd,598120.0,-1119820.6,131.9,40,worn,associated with hearth
+F-0112,Bořitov,2024,bone,awl,-598358.6,-1152287.3,21.7,25,worn,found in fill
+F-0113,Znojmo-Hradiště,2024,stone,quern fragment,-668921.4,-1190390.8,81.4,70,worn,sieved
+F-0114,Blučina,2019,bronze,ring,-594973.8,-1172100.3,30.3,25,corroded,
+F-0115,Dolní Věstonice,2019,bronze,fitting,-601014.5,-1188182.3,10.0,25,worn,associated with hearth
+F-0116,Mikulčice,2017,ceramic,spindle whorl,-546920.3,-1195188.9,58.5,35,fragmentary,
+F-0117,Blučina,2017,ceramic,sherd,-595044.5,-1172312.8,100.3,70,good,redeposited
+F-0118,Pohansko,2023,ceramic,loom weight,-571426.3,-1195863.4,10.7,20,worn,
+F-0119,Pohansko,2021,iron,nail,-571187.3,-1195865.9,33.8,30,good,sieved
+F-0120,Němčice nad Hanou,2020,glass,bead,-560076.5,-1128847.9,10.9,45,worn,associated with hearth
+F-0121,Dolní Věstonice,2023,ceramic,spindle whorl,-601136.0,-1188194.2,2.7,,good,associated with hearth
+F-0122,Pohansko,2021,ceramic,loom weight,-571187.1,-1196111.6,46.4,70,corroded,metal detector find
+F-0123,Pohansko,2021,iron,buckle,-571306.7,-1195716.0,131.4,,fragmentary,redeposited
+F-0124,Staré Hradisko,2023,ceramic,loom weight,-550172.2,-1119762.4,18.3,20,good,
+F-0125,Bořitov,2023,silver,wire,-598065.7,-1152579.1,148.0,45,good,metal detector find
+F-0126,Pohansko,2023,bone,worked fragment,-571614.8,-1195779.6,13.8,30,corroded,sieved
+F-0127,Mikulčice,2019,silver,coin,-546767.5,-1195418.7,11.6,,good,
+F-0128,Bořitov,2023,iron,nail,-598061.2,-1152169.1,78.5,35,fragmentary,associated with hearth
+F-0129,Němčice nad Hanou,2017,glass,bracelet fragment,-560119.2,-1128846.2,12.1,25,fragmentary,
+F-0130,Znojmo-Hradiště,2019,bronze,brooch,-669022.2,-1190270.0,105.4,20,fragmentary,metal detector find
+F-0131,Blučina,2023,stone,flake,-595218.0,-1172244.3,29.3,35,fragmentary,redeposited
+F-0132,Němčice nad Hanou,2017,glass,bracelet fragment,-560247.0,-1128437.8,16.0,70,good,found in fill
+F-0133,Blučina,2021,glass,bracelet fragment,-594708.4,-1172179.1,56.7,25,worn,no context recorded
+F-0134,Němčice nad Hanou,2018,stone,flake,-560172.5,-1129320.8,108.5,70,corroded,found in fill
+F-0135,Znojmo-Hradiště,2018,ceramic,spindle whorl,-668803.7,-1190080.3,3.0,35,good,metal detector find
+F-0136,Mikulčice,2020,ceramic,spindle whorl,-546238.9,-1195098.8,32.3,15,worn,sieved
+F-0137,Bořitov,2021,silver,wire,-597931.6,-1152336.5,17.8,15,good,found in fill
+F-0138,Blučina,2024,ceramic,sherd,-595275.5,-1172482.0,6.8,55,worn,found in fill
+F-0139,Dolní Věstonice,2019,bronze,brooch,-600964.6,-1188100.0,5.5,40,fragmentary,found in fill
+F-0140,Znojmo-Hradiště,2019,bone,worked fragment,-668880.2,-1190032.2,65.0,35,fragmentary,metal detector find
+F-0141,Němčice nad Hanou,2023,stone,quern fragment,-560284.7,-1129077.2,20.2,30,worn,no context recorded
+F-0142,Znojmo-Hradiště,2022,stone,flake,-668659.8,-1190044.1,78.0,35,fragmentary,redeposited

@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# generated artefacts from the agents session
+1-monday-agents/artifacts/*.html
+1-monday-agents/map.png
