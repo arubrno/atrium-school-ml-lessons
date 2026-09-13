@@ -32,7 +32,8 @@ the same way, so whatever the organisers' first run fetched, everyone has.
 
 * installs only the packages that are actually missing, with the flags that
   suit the platform (``--user`` on the hub, the CPU wheel index for PyTorch off
-  Colab);
+  Colab), and on the hub then blocks ``%pip install`` for the rest of the
+  kernel's life — use ``ensure()``, which takes the install lock, instead;
 * points the model cache and the dataset cache somewhere that survives as long
   as the platform allows;
 * puts the repository root on ``sys.path`` so ``from atrium_data import
@@ -112,9 +113,12 @@ def _pip(packages: list[str], *, user: bool, extra_args: list[str] | None = None
     if user:
         # ~/.local/bin is not on the hub's PATH. Notebooks only import the
         # packages, so the command-line scripts some of them ship don't matter.
-        cmd += ["--user", "--no-warn-script-location"]
+        # No wheel cache either: it would sit in the home everybody shares.
+        cmd += ["--user", "--no-warn-script-location", "--no-cache-dir"]
     cmd += (extra_args or []) + packages
-    subprocess.run(cmd, check=True)
+    # setup() blocks pip install in hub kernels; this locked install is the exception.
+    env = {k: v for k, v in os.environ.items() if k != "PIP_REQUIRE_VIRTUALENV"}
+    subprocess.run(cmd, check=True, env=env)
 
 
 def _missing(packages) -> list[str]:
@@ -281,6 +285,12 @@ def setup(*packages: str, drive: bool = False, quiet: bool = False) -> Path:
     (cache / "huggingface").mkdir(parents=True, exist_ok=True)
 
     ensure(*_CORE, *packages, quiet=quiet)
+
+    if env == "hub" and not _in_venv():
+        # A %pip install or !pip install in a hub notebook would write into the
+        # ~/.local that every participant shares, unlocked. pip refuses to install
+        # outside a virtualenv while this is set; show and list still work.
+        os.environ["PIP_REQUIRE_VIRTUALENV"] = "1"
 
     if not quiet:
         where = {"colab": "Google Colab", "hub": "JupyterHub", "local": "this machine"}[env]

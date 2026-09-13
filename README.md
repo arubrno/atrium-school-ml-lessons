@@ -109,6 +109,11 @@ git clone --depth 1 https://github.com/arubrno/atrium-school-ml-lessons.git \
   `~/_atrium-data/satellite/`, `~/_atrium-data/rock-art/`.
 - **Do not** `pip install -r requirements.txt` on the hub. It includes
   `jupyterlab`, and a copy in the shared `~/.local` would shadow the server's own.
+- After the setup cell has run, `%pip install` in a hub notebook fails on
+  purpose ("Could not find an activated virtualenv"), so 25 people cannot
+  install into the shared `~/.local` at once. To add a package, use
+  `from atrium_bootstrap import ensure; ensure("<package>")`, which waits its
+  turn behind the install lock, or `pip install --user` from a terminal.
 - The hub image ships torch 2.4.1, which is why `transformers` is held below 5.
 
 If the shared repository gets into a mess, delete it and clone again; participants'
