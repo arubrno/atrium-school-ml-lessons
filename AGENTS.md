@@ -40,7 +40,8 @@ notebook and the session it belongs to in step — if a change here makes
 - **Never commit dataset files.** Data is fetched by `get_dataset("<name>")` and
   recorded in `datasets.yml`. The only exceptions already in the repository are
   `1-monday-intro/demo-images/` and `1-monday-python/data/` (public, small,
-  credited in their `CREDITS.md`).
+  credited in their `CREDITS.md`), and `2-tuesday-artefacts/images/` (the ten
+  annotation-exercise photographs, credited in `2-tuesday-artefacts/credits.csv`).
 - **Never commit notebook outputs.** Every `.ipynb` in `main` has empty
   `outputs` and no `execution_count`. Clear them before staging.
 - **Everything runs on CPU.** No CUDA-only code, no `.cuda()`, no assumption
