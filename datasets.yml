@@ -47,6 +47,18 @@ artefacts:
     kind: repo
     path: 2-tuesday-artefacts/data
 
+artefacts-coco:
+  title: AMČR-PAS metal-detector finds, 10 classes, COCO boxes and outlines (1500 photos)
+  day: Tuesday
+  instructor: TBC
+  licence: CC BY-NC 4.0   # per-image DOIs in 2-tuesday-artefacts-coco/credits.csv
+  access: public
+  source:
+    kind: url
+    url: "https://example.invalid/artefacts-coco.zip"   # TODO: real URL
+    # the zip built by 2-tuesday-artefacts-coco/build_subset.py (reproducible)
+    sha256: cea277ef4e202a2021404fcdf646b4901bbd7ae831fc9ccba1c438659f5cbdfe
+
 use-wear:
   title: Microscopic use-wear images
   day: Wednesday

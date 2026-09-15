@@ -220,3 +220,6 @@ __marimo__/
 # generated artefacts from the agents session
 1-monday-agents/artifacts/*.html
 1-monday-agents/map.png
+
+# build output of dataset scripts (e.g. 2-tuesday-artefacts-coco/build_subset.py)
+/temp/
