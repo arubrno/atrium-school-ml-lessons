@@ -55,9 +55,17 @@ artefacts-coco:
   access: public
   source:
     kind: url
-    url: "https://example.invalid/artefacts-coco.zip"   # TODO: real URL
+    # CESNET FileSender: the direct download of the transfer's one file. Transfers
+    # expire; after the school, move this to Zenodo.
+    url: "https://filesender.cesnet.cz/download.php?token=0f541c2c-598b-4b6c-8000-fac724e0bfd4&files_ids=924325"
     # the zip built by 2-tuesday-artefacts-coco/build_subset.py (reproducible)
     sha256: cea277ef4e202a2021404fcdf646b4901bbd7ae831fc9ccba1c438659f5cbdfe
+  note: >-
+    If the download keeps failing, get the zip by hand: open
+    https://filesender.cesnet.cz/?s=download&token=0f541c2c-598b-4b6c-8000-fac724e0bfd4
+    click Download, and unzip artefacts-coco.zip into the folder that
+    `from atrium_data import cache_dir; print(cache_dir())` prints.
+    Then run get_dataset("artefacts-coco") again.
 
 use-wear:
   title: Microscopic use-wear images

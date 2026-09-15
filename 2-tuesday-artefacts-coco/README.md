@@ -42,6 +42,26 @@ The folder you get back holds:
 | `credits.csv` | the AMČR record and DOI of every photograph |
 | `README.md` | the same summary |
 
+### If the download fails
+
+`get_dataset` downloads the zip (58 MB) from CESNET FileSender. If that keeps failing,
+get it by hand:
+
+1. Open <https://filesender.cesnet.cz/?s=download&token=0f541c2c-598b-4b6c-8000-fac724e0bfd4>
+   and click **Download**. You get `artefacts-coco.zip`.
+2. In a notebook, after the setup cell, find where datasets are kept:
+
+   ```python
+   from atrium_data import cache_dir
+   print(cache_dir())
+   ```
+
+3. Unzip `artefacts-coco.zip` into that folder, so that you end up with
+   `<that folder>/artefacts-coco/images/`. Watch out: *Extract All* on Windows adds a
+   second `artefacts-coco` folder, one level too deep.
+4. Run `get_dataset("artefacts-coco")` again. It now finds the folder and does not
+   download anything.
+
 There are no ready-made train/validation splits. Make your own, and keep the photos
 of one AMČR record (the `record` field of each image) on the same side of the split.
 
@@ -87,5 +107,10 @@ It reads the AMČR-PAS COCO export and its photographs from the FiftyOne copy
 (`$FIFTYONE_ROOT`, default `~/Documents/fiftyone`), and writes `temp/artefacts-coco/`,
 `temp/artefacts-coco.zip`, a contact sheet for checking the outlines by eye, and this
 folder's `credits.csv`. The build is deterministic: the same inputs give the same zip,
-with the sha256 recorded in `datasets.yml`. Upload the zip and put its link in the
-`url` of the `artefacts-coco` entry.
+with the sha256 recorded in `datasets.yml`.
+
+The zip is on CESNET FileSender. `url` in `datasets.yml` is the direct
+`download.php?token=…&files_ids=…` link, which needs no click. The share link above
+is the fallback. FileSender transfers expire: if the zip moves, change `url`, the
+`note` in `datasets.yml` and the share link above. After the school it belongs on
+Zenodo.
