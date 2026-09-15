@@ -29,6 +29,7 @@ import os
 import shutil
 import tarfile
 import tempfile
+import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -229,7 +230,9 @@ def _from_source(name: str, entry: dict, source: dict, *, refresh: bool) -> Path
         staged = Path(tmp) / "staged"
         staged.mkdir()
         for url in urls:
-            archive = Path(tmp) / url.rstrip("/").split("/")[-1]
+            # Drop any ?query: a link like download.php?token=... is no file name on
+            # Windows. _extract() recognises the archive by its contents, not its name.
+            archive = Path(tmp) / (urllib.parse.urlsplit(url).path.rstrip("/").split("/")[-1] or "archive")
             try:
                 _download(url, archive)
             except Exception as exc:  # network, 404, DNS ...

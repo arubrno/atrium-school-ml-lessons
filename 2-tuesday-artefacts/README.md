@@ -81,6 +81,10 @@ path = get_dataset("artefacts")
 If the dataset moves, gains a DOI, or changes size, edit its entry in
 `../datasets.yml`. No notebook needs to change.
 
+To train a model, use the larger annotated dataset in
+[`../2-tuesday-artefacts-coco/`](../2-tuesday-artefacts-coco/): 1500 AMČR-PAS
+photographs in ten classes, in COCO format (`get_dataset("artefacts-coco")`).
+
 ## Notebooks
 
 _To be added._
