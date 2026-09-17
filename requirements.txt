@@ -18,6 +18,11 @@ matplotlib
 requests
 pyyaml          # reads datasets.yml
 opencv-python-headless   # Monday Python block; headless needs no libGL, which containers often lack
+pandas          # Thursday satellite: training tables
+rasterio        # Thursday satellite: reading and writing GeoTIFFs
+geopandas       # Thursday satellite: shapefiles (brings shapely)
+scikit-image    # Thursday satellite: Frangi filter
+scikit-learn    # Thursday satellite: Random Forest
 
 # Only if you want to run the notebook locally rather than on the hub.
 # Never install this file on the hub: a jupyterlab in the shared ~/.local

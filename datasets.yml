@@ -79,18 +79,14 @@ use-wear:
     sha256: null                                   # TODO: fill in once published
 
 satellite:
-  title: Satellite imagery
+  title: Sentinel-2 bands and training points, cropmarks at Cornești-Iarcuri (Romania)
   day: Thursday
-  instructor: TBC
-  licence: TBC
-  access: restricted
+  instructor: Filip Hájek
+  licence: TBC   # Sentinel-2 bands: Copernicus open data; points and polygons: the instructor's own, see 4-thursday-satellite/data/CREDITS.md
+  access: public
   source:
-    kind: hub
-    path: ~/_atrium-data/satellite
-  note: >-
-    Site locations make this dataset non-redistributable, so it is not in the
-    repository. It is on the school JupyterHub for the week — ask an
-    instructor if the folder is missing.
+    kind: repo
+    path: 4-thursday-satellite/data
 
 rock-art:
   title: Rock art images

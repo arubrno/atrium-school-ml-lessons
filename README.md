@@ -16,7 +16,7 @@ website: <https://arup-cas.github.io/atrium-school-ml/>.
 | [`2-tuesday-artefacts/`](2-tuesday-artefacts/) | Artefact photographs | datasets, licensing, annotation |
 | [`2-tuesday-artefacts-coco/`](2-tuesday-artefacts-coco/) | Artefact training data | 1500 annotated AMČR-PAS photographs, 10 classes, COCO |
 | [`3-wednesday-use-wear/`](3-wednesday-use-wear/) | Microscopic use-wear | pre-processing, augmentation, OpenCV |
-| [`4-thursday-satellite/`](4-thursday-satellite/) | Satellite imagery | object detection on remote-sensing data |
+| [`4-thursday-satellite/`](4-thursday-satellite/) | Satellite imagery | cropmarks in Sentinel-2, Random Forest |
 | [`4-thursday-rock-art/`](4-thursday-rock-art/) | Rock art | to be confirmed |
 | [`5-friday-coins/`](5-friday-coins/) | Coins | combining methods, vision-language models |
 
@@ -70,8 +70,8 @@ Where each dataset actually lives — in this repository, mounted on the hub, or
 downloaded once and cached — is recorded in [`datasets.yml`](datasets.yml), and
 nowhere else. Moving a dataset edits that file and no notebook.
 
-The satellite and rock-art datasets are restricted and are on the school
-JupyterHub only; those two case studies do not run in Colab.
+The rock-art dataset is restricted and is on the school JupyterHub only; that
+case study does not run in Colab.
 
 ## What is where
 
@@ -107,7 +107,7 @@ git clone --depth 1 https://github.com/arubrno/atrium-school-ml-lessons.git \
   — all shared. A participant who gets there first is not a disaster: installs
   take turns behind a lock, and a download is only ever seen once complete.
 - **Restricted datasets** go in by hand, at the path `datasets.yml` gives:
-  `~/_atrium-data/satellite/`, `~/_atrium-data/rock-art/`.
+  `~/_atrium-data/rock-art/`.
 - **Do not** `pip install -r requirements.txt` on the hub. It includes
   `jupyterlab`, and a copy in the shared `~/.local` would shadow the server's own.
 - After the setup cell has run, `%pip install` in a hub notebook fails on

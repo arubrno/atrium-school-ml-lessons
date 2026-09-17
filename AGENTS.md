@@ -40,8 +40,10 @@ notebook and the session it belongs to in step — if a change here makes
 - **Never commit dataset files.** Data is fetched by `get_dataset("<name>")` and
   recorded in `datasets.yml`. The only exceptions already in the repository are
   `1-monday-intro/demo-images/` and `1-monday-python/data/` (public, small,
-  credited in their `CREDITS.md`), and `2-tuesday-artefacts/images/` (the ten
-  annotation-exercise photographs, credited in `2-tuesday-artefacts/credits.csv`).
+  credited in their `CREDITS.md`), `2-tuesday-artefacts/images/` (the ten
+  annotation-exercise photographs, credited in `2-tuesday-artefacts/credits.csv`),
+  and `4-thursday-satellite/data/` (about 1 MB of Sentinel-2 bands and training
+  points, credited in its `CREDITS.md`).
 - **Never commit notebook outputs.** Every `.ipynb` in `main` has empty
   `outputs` and no `execution_count`. Clear them before staging.
 - **Everything runs on CPU.** No CUDA-only code, no `.cuda()`, no assumption
@@ -50,7 +52,7 @@ notebook and the session it belongs to in step — if a change here makes
   below 5 because the school JupyterHub image ships torch 2.4.1, and
   `openai/clip-vit-base-patch32` is pinned to a safetensors revision for the
   same reason.
-- **Restricted datasets** (`satellite`, `rock-art`) exist only on the school
+- **Restricted datasets** (`rock-art`) exist only on the school
   JupyterHub. Code that uses them must fail with a readable message elsewhere,
   never with a traceback.
 
